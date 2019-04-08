@@ -1,0 +1,32 @@
+<h1>合成音声</h1>
+<p>合成音声を作りたい内容を書いて、再生ボタンを押してください</p>
+<p>音の速さも調整できます</p>
+<textarea id="text" placeholder="再生する内容" ></textarea>
+<button id="speak-btn">再生</button>
+<p>Speed: <input type="range" id="slider" value="10" min="5" max="30"> ×<span id="label">1.0</span></p>
+
+<script type="text/javascript">
+  if ('speechSynthesis' in window) {
+  } else {
+    alert("このブラウザは音声合成に対応していません。")
+  }
+
+  var slider =document.getElementById('slider');
+  var label =document.getElementById('label');
+  slider.addEventListener('change', function(){
+    var n;
+    n = this.value * 0.1;
+    label.innerHTML = n.toFixed(1);
+  });
+
+  const text     = document.querySelector('#text');
+  const speakBtn = document.querySelector('#speak-btn');
+  speakBtn.addEventListener('click', function() {
+    const u = new SpeechSynthesisUtterance();
+    u.text = text.value;
+    u.rate = label.innerHTML;
+    u.pitch = 1.2;
+    speechSynthesis.speak(u)
+  })
+
+</script>
