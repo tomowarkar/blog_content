@@ -5,6 +5,10 @@
 <div id="textarea"></div>
 
 <script type="text/javascript">
+  if ('webkitSpeechRecognition' in window) {
+  } else {
+    alert("このブラウザは音声合成に対応していません。")
+  }
   var recognizing;
   var recognition = new webkitSpeechRecognition();
   recognition.continuous = true;
