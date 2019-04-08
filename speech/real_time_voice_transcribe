@@ -1,0 +1,50 @@
+<h1>リアルタイム音声文字起こし</h1>
+<p>Click to Speakでリアルタイム文字起こしを開始します</p>
+<p>確定した文字列を黒色、不確定な文字列を灰色で表しています</p>
+<p>Click to Stopでリアルタイム文字起こしを終了します</p>
+<button id="button" onclick="toggleStartStop()"></button>
+<div style="border:dotted;padding:10px">
+  <span id="final_span"></span>
+  <span id="interim_span" style="color:grey"></span>
+</div>
+
+<script type="text/javascript">
+  var recognizing;
+  var recognition = new webkitSpeechRecognition();
+  recognition.continuous = true;
+  recognition.interimResults = true;
+  reset();
+  recognition.onend = reset;
+
+  recognition.onresult = function (event) {
+    var final = "";
+    var interim = "";
+    for (var i = 0; i < event.results.length; ++i) {
+      if (event.results[i].isFinal) {
+        final += event.results[i][0].transcript;
+      } else {
+        interim += event.results[i][0].transcript;
+      }
+    }
+    final_span.innerHTML = final;
+    interim_span.innerHTML = interim;
+  }
+
+  function reset() {
+    recognizing = false;
+    button.innerHTML = "Click to Speak";
+  }
+
+  function toggleStartStop() {
+    if (recognizing) {
+      recognition.stop();
+      reset();
+    } else {
+      recognition.start();
+      recognizing = true;
+      button.innerHTML = "Click to Stop";
+      final_span.innerHTML = "";
+      interim_span.innerHTML = "";
+    }
+  }
+</script>
