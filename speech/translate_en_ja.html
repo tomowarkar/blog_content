@@ -1,0 +1,88 @@
+<h1>日英翻訳</h1>
+<p>日本語と英語の翻訳ができます</p>
+<p>スイッチで日→英と英→日を入れ替えることができます</p>
+<div class="switchArea">
+  <input type="checkbox" id="switch1">
+  <label for="switch1"><span></span></label>
+  <div id="swImg"></div>
+</div>
+<textarea id="text" placeholder="こんにちは"></textarea>
+<button id="btn">翻訳</button>
+<div id="txt"></div>
+<script>
+  var lang = true;
+  var sbtn = document.getElementById('switch1');
+  sbtn.addEventListener('click', function() {
+    lang = !lang;
+    if(lang){
+      text.placeholder="こんにちは";
+    }else {
+      text.placeholder="Hello";
+    }
+  })
+
+  const text = document.querySelector('#text');
+
+  btn.addEventListener('click', function() {
+    var source = "ja";
+    var target = "en";
+    if(!lang){
+      source = [target, target = source][0];
+    }
+
+    const url= "https://script.google.com/macros/s/AKfycbweJFfBqKUs5gGNnkV2xwTZtZPptI6ebEhcCU2_JvOmHwM2TCk/exec?text="+text.value+"&source="+source+"&target="+target;
+    const request = new XMLHttpRequest();
+    request.open("GET", url);
+    request.addEventListener("load", (e) => {
+      txt.innerHTML= e.currentTarget.response;
+    });
+    txt.innerHTML= "loading...";
+    request.send();
+  })
+
+</script>
+<style>
+.switchArea {
+  line-height    : 56px;
+  text-align     : center;
+  font-size      : 25px;
+  position       : relative;
+  width          : 256px;
+}
+
+.switchArea input[type="checkbox"] {
+  display        : none;
+}
+.switchArea label {
+  display        : block;
+  box-sizing     : border-box;
+  height         : 56px;
+  border         : 2px solid;
+  border-radius  : 28px;
+}
+
+.switchArea label span:after{
+  content        : "日→英";
+}
+
+.switchArea  input[type="checkbox"]:checked + label span:after{
+  content        : "英→日";
+}
+
+.switchArea #swImg {
+  position       : absolute;
+  width          : 48px;
+  height         : 48px;
+  background     : black;
+  top            : 4px;
+  left           : 4px;
+  border-radius  : 24px;
+  transition     : .3s;
+}
+
+.switchArea input[type="checkbox"]:checked ~ #swImg {
+  transform      : translateX(200px);
+  background     : black;
+}
+</style>
+</html>
