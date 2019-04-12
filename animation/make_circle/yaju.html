@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+    <head>
+      <meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+        <title>Particles</title>
+        <style>
+        body{
+          margin:0;
+          cursor: none;
+          overflow:hidden;
+        }
+        </style>
+    </head>
+    <body>
+		    <canvas id="canvas" style="background-color:pink;"></canvas>
+		<script>
+      var PARTICLES = 1000;
+			var mouse = {x:0, y:0};
+			var particles = [];
+			var colors = [ "#ff7f7f", "#ff7fbf", "#ff7fff", "#bf7fff", "#7f7fff", "#7fbfff", "#7fffff", "#7fffbf", "#7fff7f", "#bfff7f", "#ffff7f", "#ffbf7f" ];
+			var canvas = document.getElementById('canvas');
+      var ctx = canvas.getContext('2d');
+
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+
+			if (canvas && canvas.getContext) {
+				for( var i = 0; i < PARTICLES; i++ ) {
+					particles.push( {
+						x: Math.random()*window.innerWidth,
+						y: Math.random()*window.innerHeight,
+            vx: ((Math.random()*(1*2))- 1),
+						vy: ((Math.random()*(1*2))-1),
+						size: 2+Math.random()*5,
+					} );
+				}
+
+        canvas.addEventListener('mousemove', MouseMove, false);
+				setInterval( TimeUpdate, 40 );
+			}
+
+			function TimeUpdate(e) {
+				ctx.clearRect(0, 0, window.innerWidth, window.innerHeight);
+
+				for( var i = 0; i < PARTICLES; i++ ) {
+					var particle = particles[i];
+
+					if (!particle.freez) {
+            particle.x += particle.vx;
+						particle.y += particle.vy;
+						if (particle.x > window.innerWidth || particle.x < 0) {
+							particle.vx = -particle.vx;
+						}
+            if (particle.y > window.innerHeight || particle.y < 0) {
+							particle.vy = -particle.vy;
+						}
+
+						var distanceFactor = DistanceBetween( mouse, particle );
+            distanceFactor = Math.max( Math.min( 30 - ( distanceFactor / 10 ), 10 ), 1 );
+						particle.currentSize = particle.size*distanceFactor*2;
+					}
+
+          var img = new Image();
+          img.src = "yaju.jpg";
+          ctx.drawImage(img, particle.x, particle.y, particle.currentSize, particle.currentSize);
+          ctx.beginPath();
+
+
+				}
+			}
+
+			function MouseMove(e) {
+				mouse.x = e.layerX;
+				mouse.y = e.layerY;
+			}
+
+			function DistanceBetween(p1,p2) {
+				var dx = p2.x-p1.x;
+				var dy = p2.y-p1.y;
+				return Math.sqrt(dx*dx + dy*dy);
+			}
+		</script>
+    </body>
+</html>
