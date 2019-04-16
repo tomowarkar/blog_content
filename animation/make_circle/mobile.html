@@ -1,3 +1,4 @@
+<!--https://nymemo.com/jquery/1278/-->
 
 <!doctype html>
 <html>
@@ -10,20 +11,17 @@
 				overflow: hidden;
 			}
       h1{
-        font-size:25px;
         position: absolute;
-				transform: translateY(-50%) translateX(-50%);
-        top: 50%;
-        left: 50%;
+        top: 0;
+        left: 0;
         margin: 0;
       }
-
 
 		</style>
 	</head>
 	<body>
 	  <div id="hitarea"><canvas id="canvas"></canvas></div>
-		<!--<h1>X:<span id="x"></span> Y:<span id="y"></span></h1>-->
+		<h1>X:<span id="x"></span> Y:<span id="y"></span></h1>
 
 
 	</body>
@@ -33,13 +31,19 @@
   canvas.width  = window.innerWidth;
   canvas.height = window.innerHeight;
 
-	function drawCoordinates(x,y){
+	function drawCoordinates(x,y,mouseX,mouseY){
 			var ctx = document.getElementById("canvas").getContext("2d");
 
-			ctx.fillStyle = "#ff7f7f";
 			ctx.beginPath();
-			ctx.arc(x, y, 5, 0, Math.PI * 2, true);
-			ctx.fill();
+			ctx.moveTo(mouseX, mouseY);
+		  ctx.lineTo(x, y);
+			ctx.lineCap = "round";
+			ctx.lineWidth = 10;
+			ctx.strokeStyle = "#ff7f7f";
+			ctx.closePath();
+			ctx.stroke();
+			mouseX = x;
+      mouseY = y;
 	}
 
 	var $document = $(document);
@@ -47,17 +51,16 @@
 	var $x = $('#x');
 	var $y = $('#y');
 
-	// タッチイベントが利用可能かの判別
-
-	var supportTouch = 'ontouchend' in document;
-
-	// イベント名
+	var supportTouch = 'ontouchend' in document;// タッチイベントが利用可能かの判別
 
 	var EVENTNAME_TOUCHSTART = supportTouch ? 'touchstart' : 'mousedown';
 	var EVENTNAME_TOUCHMOVE = supportTouch ? 'touchmove' : 'mousemove';
 	var EVENTNAME_TOUCHEND = supportTouch ? 'touchend' : 'mouseup';
 
-	// 表示をアップデートする関数群
+	var mouseX = "";
+  var mouseY = "";
+	var x;
+	var y;
 
 	var updateXY = function(event) {
 	  var original = event.originalEvent;
@@ -71,24 +74,31 @@
 	  }
 	  $x.text(x);
 	  $y.text(y);
-		drawCoordinates(x,y)
+		return [x,y];
 	};
 
-	// イベント設定
 
+	// イベント設定
 	var handleStart = function(event) {
 		event.preventDefault();// タッチによる画面スクロールを止める
-	  updateXY(event);
+	  [x,y] = updateXY(event);
+		mouseX = x;
+    mouseY = y;
 	  bindMoveAndEnd();
 	};
 	var handleMove = function(event) {
 	  event.preventDefault(); // タッチによる画面スクロールを止める
-	  updateXY(event);
-
+	  [x,y] = updateXY(event);
+		drawCoordinates(x,y,mouseX,mouseY)
+		mouseX = x;
+    mouseY = y;
 	};
 	var handleEnd = function(event) {
-	  updateXY(event);
-	  unbindMoveAndEnd();
+		[x,y] = updateXY(event);
+		drawCoordinates(x,y,mouseX,mouseY)
+		mouseX = "";
+    mouseY = "";
+		unbindMoveAndEnd();
 	};
 	var bindMoveAndEnd = function() {
 	  $document.on(EVENTNAME_TOUCHMOVE, handleMove);
