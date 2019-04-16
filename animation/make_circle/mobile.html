@@ -1,0 +1,107 @@
+
+<!doctype html>
+<html>
+	<head>
+		<meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+		<title></title>
+		<style>
+			body {
+        margin: 0;
+			}
+      h1{
+        font-size:25px;
+        position: absolute;
+				transform: translateY(-50%) translateX(-50%);
+        top: 50%;
+        left: 50%;
+        margin: 0;
+      }
+
+
+		</style>
+	</head>
+	<body>
+	  <div id="hitarea"><canvas id="canvas"></canvas></div>
+		<h1>X:<span id="x"></span> Y:<span id="y"></span></h1>
+
+
+	</body>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+	<script>
+	var canvas = document.getElementById( 'canvas' );
+  canvas.width  = window.innerWidth;
+  canvas.height = window.innerHeight;
+
+	function drawCoordinates(x,y){
+			var ctx = document.getElementById("canvas").getContext("2d");
+
+			ctx.fillStyle = "#ff7f7f";
+			ctx.beginPath();
+			ctx.arc(x, y, 5, 0, Math.PI * 2, true);
+			ctx.globalAlpha = 0.8;
+			ctx.fill();
+	}
+
+	var $document = $(document);
+	var $hitarea = $('#hitarea');
+	var $x = $('#x');
+	var $y = $('#y');
+
+	// タッチイベントが利用可能かの判別
+
+	var supportTouch = 'ontouchend' in document;
+
+	// イベント名
+
+	var EVENTNAME_TOUCHSTART = supportTouch ? 'touchstart' : 'mousedown';
+	var EVENTNAME_TOUCHMOVE = supportTouch ? 'touchmove' : 'mousemove';
+	var EVENTNAME_TOUCHEND = supportTouch ? 'touchend' : 'mouseup';
+
+	// 表示をアップデートする関数群
+
+	var updateXY = function(event) {
+	  var original = event.originalEvent;
+	  var x, y;
+	  if(original.changedTouches) {
+	    x = original.changedTouches[0].pageX;
+	    y = original.changedTouches[0].pageY;
+	  } else {
+	    x = event.pageX;
+	    y = event.pageY;
+	  }
+	  $x.text(x);
+	  $y.text(y);
+		drawCoordinates(x,y)
+	};
+	var updateEventname = function(eventname) {
+	  $eventname.text(eventname);
+	};
+
+	// イベント設定
+
+	var handleStart = function(event) {
+	  updateXY(event);
+	  bindMoveAndEnd();
+	};
+	var handleMove = function(event) {
+	  event.preventDefault(); // タッチによる画面スクロールを止める
+	  updateXY(event);
+
+	};
+	var handleEnd = function(event) {
+	  updateXY(event);
+	  unbindMoveAndEnd();
+	};
+	var bindMoveAndEnd = function() {
+	  $document.on(EVENTNAME_TOUCHMOVE, handleMove);
+	  $document.on(EVENTNAME_TOUCHEND, handleEnd);
+	};
+	var unbindMoveAndEnd = function() {
+	  $document.off(EVENTNAME_TOUCHMOVE, handleMove);
+	  $document.off(EVENTNAME_TOUCHEND, handleEnd);
+	};
+
+	$hitarea.on(EVENTNAME_TOUCHSTART, handleStart);
+
+  </script>
+</html>
