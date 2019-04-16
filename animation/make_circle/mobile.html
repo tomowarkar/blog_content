@@ -10,36 +10,59 @@
         margin: 0;
 				overflow: hidden;
 			}
-      h1{
-        position: absolute;
-        top: 0;
-        left: 0;
+			.box{
+
+			}
+			#color,
+			#removePaint{
+				position: absolute;
         margin: 0;
-      }
+			}
+			#color{
+				width: 54px;
+				height:58px;
+				right: 10px;
+				bottom: 60px;
+			}
+			#removePaint{
+				width: 50px;
+				height:50px;
+				right: 15px;
+				bottom: 10px;
+				background: lightgray;
+			}
+
 
 		</style>
 	</head>
 	<body>
 	  <div id="hitarea"><canvas id="canvas"></canvas></div>
-		<!--<h1>X:<span id="x"></span> Y:<span id="y"></span></h1>-->
+			<!--<h1>X:<span id="x"></span> Y:<span id="y"></span></h1>-->
+			<input type="color" id="color" value="#ff7f7f">
+			<input type="button" id="removePaint" value="clear" onclick="removePaint()">
+
+
 
 
 	</body>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
 	<script>
+
 	var canvas = document.getElementById( 'canvas' );
+	var ctx = document.getElementById("canvas").getContext("2d");
   canvas.width  = window.innerWidth;
   canvas.height = window.innerHeight;
 
+
 	function drawCoordinates(x,y,mouseX,mouseY){
-			var ctx = document.getElementById("canvas").getContext("2d");
+
 
 			ctx.beginPath();
 			ctx.moveTo(mouseX, mouseY);
 		  ctx.lineTo(x, y);
 			ctx.lineCap = "round";
 			ctx.lineWidth = 10;
-			ctx.strokeStyle = "#ff7f7f";
+			ctx.strokeStyle = defocolor;
 			ctx.closePath();
 			ctx.stroke();
 			mouseX = x;
@@ -59,8 +82,6 @@
 
 	var mouseX = "";
   var mouseY = "";
-	var x;
-	var y;
 
 	var updateXY = function(event) {
 	  var original = event.originalEvent;
@@ -110,6 +131,21 @@
 	};
 
 	$hitarea.on(EVENTNAME_TOUCHSTART, handleStart);
+
+	let defocolor = "#ff7f7f";
+	function watchColorPicker(event) {
+			defocolor = event.target.value;
+	}
+	document.querySelector("#color").addEventListener("change", watchColorPicker, false);
+
+	function removePaint() {
+        ctx.beginPath();
+        ctx.fillStyle = "#FFFFFD";
+        ctx.fillRect(0, 0, canvas.width,canvas.height);
+    }
+
+
+
 
   </script>
 </html>
