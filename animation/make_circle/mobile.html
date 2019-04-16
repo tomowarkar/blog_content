@@ -8,7 +8,6 @@
 			body {
         margin: 0;
 				overflow: hidden;
-				
 			}
       h1{
         font-size:25px;
@@ -40,7 +39,6 @@
 			ctx.fillStyle = "#ff7f7f";
 			ctx.beginPath();
 			ctx.arc(x, y, 5, 0, Math.PI * 2, true);
-			ctx.globalAlpha = 0.8;
 			ctx.fill();
 	}
 
@@ -75,13 +73,11 @@
 	  $y.text(y);
 		drawCoordinates(x,y)
 	};
-	var updateEventname = function(eventname) {
-	  $eventname.text(eventname);
-	};
 
 	// イベント設定
 
 	var handleStart = function(event) {
+		event.preventDefault();// タッチによる画面スクロールを止める
 	  updateXY(event);
 	  bindMoveAndEnd();
 	};
