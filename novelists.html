@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <title>Password Generator</title>
+  <style>
+  body{
+    background: #e0e0e0;
+    font-family: 'Courier New', sans-serif;
+    text-align: center;
+    }
+    .container{
+      width: 320px;
+      margin: 30px auto;
+    }
+
+    fieldset{
+      margin-top: 40px;
+      border: 1px dashed #aaa;
+      border-radius: 5px;
+      text-align: left;
+    }
+    legend{
+      font-weight: bold;
+      padding: 0 10px;
+    }
+    fieldset p{
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1><span id="novelists"></span></h1>
+    <fieldset>
+      <legend>Options</legend>
+      <p>激しい <input type="range" id="violent" value="2" min="0" max="4"> 穏やか</p>
+      <p>人が死ぬ <input type="range" id="human" value="2" min="0" max="4"> 恋をする</p>
+
+    </fieldset>
+  </div>
+  <!--container-->
+  <script>
+  (function(){
+    'use strict';
+
+    var violent =document.getElementById('violent');
+    var human =document.getElementById('human');
+    var btn =document.getElementById('btn');
+    var result =document.getElementById('result');
+    var novelists =document.getElementById('novelists');
+
+
+    var name = [
+      ['赤川次郎','有栖川有栖','恒川光太郎','百田尚樹','中山七里'],
+      ['湊かなえ','東野圭吾','森博嗣','星新一','筒井康隆'],
+      ['伊坂幸太郎','辻村深月','恩田陸','奥田英朗','井上荒野'],
+      ['米澤穂信','万城目学','江國香織','有川浩','三浦しをん'],
+      ['石田衣良','村上春樹','朝井リョウ','山田詠美','吉本ばなな']
+    ];
+
+    violent.addEventListener('change', function(){
+      novelists.innerHTML = name[human.value][violent.value];
+    });
+    human.addEventListener('change', function(){
+      novelists.innerHTML = name[human.value][violent.value];
+    });
+
+
+
+
+
+
+
+
+
+
+  })();
+
+  </script>
+</body>
+</html>
