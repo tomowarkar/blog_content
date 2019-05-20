@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no" />
+  <title></title>
+<style>
+  body{margin:0;background: lightgray;}
+  header,footer{background:gray;height:100px;}
+
+  .content {
+    padding:50px 0;
+    display: flex;
+    justify-content: space-between;
+    width: 1236px;
+    margin:auto;
+  }
+
+  .main-content, .side-content{
+    background-color: #fff;
+    padding: 9px;
+    width:100%;
+  	border:　1px solid transparent;
+    border-radius: 4px;
+    box-sizing: border-box;
+  }
+  .main {
+    width: 860px;
+  }
+
+  .sidebar {
+    width: 356px;
+  }
+
+  @media screen and (max-width:1023px) {
+  	.content {
+  	  display: block
+  	}
+  	div.main, div.sidebar {
+  		display: block;
+  	  margin: 10px;
+  	  width: auto
+  	}
+  	.main {
+  	  width: 860px
+  	}
+  	.sidebar {
+  	  width: 356px
+  	}
+  }
+
+  @media screen and (max-width:1240px) {
+    .content {
+      width: auto;
+    }
+    .main, .sidebar{
+      margin: 0 .5%
+    }
+    .main {
+      width: 67%
+    }
+    .sidebar {
+      width: 30%
+    }
+  }
+
+</style>
+
+</head>
+<body>
+  <header></header>
+  <div class="content">
+    <div class="main">
+      <div class="main-content" style="height:60vh;"></div>
+    </div>
+	  <div class="sidebar">
+      <div class="side-content" style="height:40vh;"></div>
+    </div>
+	</div>
+  <footer></footer>
+
+</body>
+</html>
