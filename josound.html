@@ -1,57 +1,34 @@
 <!DOCTYPE html>
-<html lang="ja">
-<head>
-  <meta charset="utf-8">
-  <title>JavaScript Practice</title>
-  <style>
-    body {
-      display: flex;
-      flex-wrap: wrap;
-    }
-    .box {
-      width: 100px;
-      height: 100px;
-      background: skyblue;
-      cursor: pointer;
-      transition: 0.8s;
-      margin: 0 8px 8px 0;
-      text-align: center;
-      line-height: 100px;
-    }
-    .win {
-      background: pink;
-      border-radius: 50%;
-      transform: rotate(360deg);
-    }
-    .lose {
-      transform: scale(0.9);
-    }
-  </style>
-</head>
-<body>
-
-  <script>
-    'use strict';
-
-    const num = 5;
-    const winner = Math.floor(Math.random() * num); // 0 - 4
-
-    for (let i = 0; i < num; i++) {
-      const div = document.createElement('div');
-      div.classList.add('box');
-      
-      div.addEventListener('click', () => {
-        if (i === winner) {
-          div.textContent = 'Win!';
-          div.classList.add('win');
-        } else {
-          div.textContent = 'Lose!';
-          div.classList.add('lose');
+<!--参考サイト:https://lab.hakim.se/particles/01/-->
+<html>
+    <head>
+      <meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+        <title>Particles</title>
+        <style>
+        body{
+          margin:0;
+          cursor: none;
         }
-      });
+        </style>
+    </head>
 
-      document.body.appendChild(div);
-    }
-  </script>
-</body>
+    <body style="overflow:hidden">
+		    <canvas id="canvas" width="100" height="100%"></canvas>
+		<script>
+			var mouse = {x:0, y:0};
+			const canvas = document.getElementById('canvas');
+
+			if (canvas && canvas.getContext) {
+				ctx = canvas.getContext('2d');
+        canvas.addEventListener('mousemove', MouseMove, false);
+        ctx.fillText(mouse);
+			}
+
+
+			function MouseMove(e) {
+				mouse.x = e.layerX;
+				mouse.y = e.layerY;
+			}
+		</script>
+    </body>
 </html>
