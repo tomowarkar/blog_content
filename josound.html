@@ -1,34 +1,36 @@
 <!DOCTYPE html>
-<!--参考サイト:https://lab.hakim.se/particles/01/-->
 <html>
-    <head>
-      <meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
-        <title>Particles</title>
-        <style>
-        body{
-          margin:0;
-          cursor: none;
-        }
-        </style>
-    </head>
+  <head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="initial-scale=1.0"/>
+    <title>Motion Sensorsサンプル</title>
+    <script>
+      window.addEventListener("devicemotion", function(event1){
+        var x = event1.accelerationIncludingGravity.x;
+        var y = event1.accelerationIncludingGravity.y;
+        var z = event1.accelerationIncludingGravity.z;
 
-    <body style="overflow:hidden">
-		    <canvas id="canvas" width="100" height="100%"></canvas>
-		<script>
-			var mouse = {x:0, y:0};
-			const canvas = document.getElementById('canvas');
+        var result1 = document.getElementById("result1");
+        result1.innerHTML =
+          "X："+ Math.round(x * 10) / 10 +"<br>" +
+          "Y："+ Math.round(y * 10) / 10 +"<br>" +
+          "Z："+ Math.round(z * 10) / 10;
+      }, true);
 
-			if (canvas && canvas.getContext) {
-				ctx = canvas.getContext('2d');
-        canvas.addEventListener('mousemove', MouseMove, false);
-        ctx.fillText(mouse, 10, 50);
-			}
+      window.addEventListener('deviceorientation', function(event2) {
+            var alpha = event2.alpha;
+            var beta = event2.beta;
+        var gamma = event2.gamma;
 
-
-			function MouseMove(e) {
-				mouse.x = e.layerX;
-				mouse.y = e.layerY;
-			}
-		</script>
-    </body>
+        result2.innerHTML =
+          "alpha："+ Math.round(alpha * 10) / 10 +"<br>" +
+          "beta："+ Math.round(beta * 10) / 10 +"<br>" +
+          "gamma："+ Math.round(gamma * 10) / 10;
+        }, true);
+    </script>
+  </head>
+  <body>
+    <div id="result1"></div>
+    <div id="result2"></div>
+  </body>
 </html>
