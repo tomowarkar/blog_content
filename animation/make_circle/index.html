@@ -1,49 +1,54 @@
-<!DOCTYPE html>
+<!doctype html>
 <html>
-  <head>
-    <meta charset="utf-8"/>
-    <meta name="viewport" content="initial-scale=1.0"/>
-    <title>モーション</title>
-		<style>
-    .box {
-      width: 100px;
-      height: 100px;
-      background: skyblue;
-      cursor: pointer;
-    }
-  </style>
-    <script>
-      window.addEventListener("devicemotion", function(e){
-				Devicemotion(e)
-			}, true);
+<head>
+<meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+<title>Pastel Circles</title>
+<style>
+body {
+overflow: hidden;
+margin: 0;
+writing-mode: vertical-rl;
+}
 
-			window.addEventListener('deviceorientation', function(e) {
-				Devicerientation(e)
-			}, true);
-
-
-				function Devicemotion(e){
-					var x = e.accelerationIncludingGravity.x;
-	        var y = e.accelerationIncludingGravity.y;
-	        var z = e.accelerationIncludingGravity.z;
-
-	        var result1 = document.getElementById("result1");
-	        result1.innerHTML =
-						"X："+ Math.round(x * 10) / 10 +"<br>" +
-	          "Y："+ Math.round(y * 10) / 10 +"<br>" +
-	          "Z："+ Math.round(z * 10) / 10;
-				}
-				function Devicerientation(e){
-					result2.innerHTML =
-					  "alpha："+ Math.round(e.alpha * 10) / 10 +"<br>" +
-          	"beta："+ Math.round(e.beta * 10) / 10 +"<br>" +
-          	"gamma："+ Math.round(e.gamma * 10) / 10;
-				}
-    </script>
-  </head>
-  <body>
-		<div class="box" id="target"></div>
-    <div id="result1"></div>
-    <div id="result2"></div>
-  </body>
-</html>
+h1{	
+  font-size:25px;	
+  position: absolute;	
+  top: 50%;	
+  left: 50%;	
+  transform: translateY(-50%) translateX(-50%);	
+  margin: 0;	
+}	
+</style>	
+</head>	
+<body>	
+<h1 onClick="rmv();" id="rmv">画面をタップしてみてね</h1>	
+<canvas id="canvas"></canvas>	
+</body>	
+<script>	
+function rmv() {	
+document.getElementById("rmv").remove();	
+}	
+var canvas = document.getElementById( 'canvas' );	
+canvas.width  = window.innerWidth;	
+canvas.height = window.innerHeight;	
+canvas.onclick = function(e) {	
+getPosition(e);	
+};	
+var pointSize = 100;	
+function getPosition(event){	
+   var rect = canvas.getBoundingClientRect();	
+   var x = event.clientX - rect.left;	
+   var y = event.clientY - rect.top;	
+    drawCoordinates(x,y);	
+}	
+function drawCoordinates(x,y){	
+  var ctx = document.getElementById("canvas").getContext("2d");	
+  var array = ["#ff7f7f", "#ff7fbf", "#ff7fff", "#bf7fff", "#7f7fff", "#7fbfff", "#7fffff", "#7fffbf", "#7fff7f", "#bfff7f", "#ffff7f", "#ffbf7f"];	
+   ctx.fillStyle = array[Math.floor(Math.random() * array.length)];	
+  ctx.beginPath();	
+  ctx.arc(x, y, pointSize, 0, Math.PI * 2, true);	
+  ctx.globalAlpha = 0.8;	
+  ctx.fill();
+   }
+   </script>
+   </html>
