@@ -3,33 +3,42 @@
   <head>
     <meta charset="utf-8"/>
     <meta name="viewport" content="initial-scale=1.0"/>
-    <title>Motion Sensorsサンプル</title>
+    <title>モーション</title>
+		<style>
+    .box {
+      width: 100px;
+      height: 100px;
+      background: skyblue;
+      cursor: pointer;
+    }
+  </style>
     <script>
-      window.addEventListener("devicemotion", function(event1){
-        var x = event1.accelerationIncludingGravity.x;
-        var y = event1.accelerationIncludingGravity.y;
-        var z = event1.accelerationIncludingGravity.z;
+      window.addEventListener("devicemotion", DeviceMotion(e), true);
 
-        var result1 = document.getElementById("result1");
-        result1.innerHTML =
-          "X："+ Math.round(x * 10) / 10 +"<br>" +
-          "Y："+ Math.round(y * 10) / 10 +"<br>" +
-          "Z："+ Math.round(z * 10) / 10;
-      }, true);
+			window.addEventListener('deviceorientation', DeviceOrientation(e), true);
 
-      window.addEventListener('deviceorientation', function(event2) {
-            var alpha = event2.alpha;
-            var beta = event2.beta;
-        var gamma = event2.gamma;
 
-        result2.innerHTML =
-          "alpha："+ Math.round(alpha * 10) / 10 +"<br>" +
-          "beta："+ Math.round(beta * 10) / 10 +"<br>" +
-          "gamma："+ Math.round(gamma * 10) / 10;
-        }, true);
+				function DeviceMotion(e){
+					var x = e.accelerationIncludingGravity.x;
+					var y = e.accelerationIncludingGravity.y;
+					var z = e.accelerationIncludingGravity.z;
+
+					var result1 = document.getElementById("result1");
+					result1.innerHTML =
+						"X："+ Math.round(x * 10) / 10 +"<br>" +
+						"Y："+ Math.round(y * 10) / 10 +"<br>" +
+						"Z："+ Math.round(z * 10) / 10;
+				}
+				function DeviceOrientation(e){
+					result2.innerHTML =
+					  "alpha："+ Math.round(e.alpha * 10) / 10 +"<br>" +
+          	"beta："+ Math.round(e.beta * 10) / 10 +"<br>" +
+          	"gamma："+ Math.round(e.gamma * 10) / 10;
+				}
     </script>
   </head>
   <body>
+		<div class="box" id="target"></div>
     <div id="result1"></div>
     <div id="result2"></div>
   </body>
