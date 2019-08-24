@@ -13,6 +13,38 @@
     }
   </style>
     <script>
+	    		'use strict';
+    var uri = "ws://133.167.71.53:3001";
+    var webSocket = null;
+
+		const play = () => {
+      if (webSocket == null) {
+        webSocket = new WebSocket(uri);
+        // イベントハンドラの設定
+        webSocket.onopen = onOpen;
+        webSocket.onmessage = onMessage;
+        webSocket.onclose = onClose;
+        webSocket.onerror = onError;
+      }
+    }
+    function onOpen(event) {
+        alert("接続しました。");
+    }// メッセージ受信イベント
+    function onMessage(event) {
+        if (event && event.data) {
+            alert(event.data);
+        }
+    }
+    function onError(event) {
+        alert("エラーが発生しました。");
+    }
+
+    function onClose(event) {
+      alert("切断")
+        //alert("切断しました。3秒後に再接続します。(" + event.code + ")");
+        webSocket = null;
+        //setTimeout("open()", 3000);
+    }
       window.addEventListener("devicemotion", function(e){
 				Devicemotion(e)
 			}, true);
@@ -43,6 +75,9 @@
   </head>
   <body>
 		<div class="box" id="target"></div>
+	  <form class="form">
+						<button type="button" onclick="play()" id="StartButton">Start</button>
+					</form>
     <div id="result1"></div>
     <div id="result2"></div>
   </body>
