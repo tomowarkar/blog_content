@@ -1,0 +1,41 @@
+
+<!doctype html>
+<html>
+	<head>
+		<meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+		<title>Hi</title>
+		<style>
+			.box {
+				width: 100px;
+				height: 100px;
+				background: skyblue;
+				cursor: pointer;
+			}
+		</style>
+	</head>
+	<body>
+		<div class='box' id='target'></div>
+		<script>
+		  var url = 'https://api.coin.z.com/public/v1/ticker?symbol=BTC'
+
+
+			document.getElementById('target').addEventListener('click', () => {
+				fetch(url).then(response => {
+					console.log(response.status); // => 200
+					response.json().then(userInfo => {
+						// JSONパースされたオブジェクトが渡され
+						console.log(userInfo); // => {...}
+					});
+				});
+				//document.getElementById('target').style.background = 'pink';
+			});
+
+
+
+
+
+		</script>
+
+
+	</body>
+  </html>
