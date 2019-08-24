@@ -13,23 +13,27 @@
     }
   </style>
     <script>
-      window.addEventListener("devicemotion", DeviceMotion(e), true);
+      window.addEventListener("devicemotion", function(e){
+				Devicemotion(e)
+			}, true);
 
-			window.addEventListener('deviceorientation', DeviceOrientation(e), true);
+			window.addEventListener('deviceorientation', function(e) {
+				Devicerientation(e)
+			}, true);
 
 
-				function DeviceMotion(e){
+				function Devicemotion(e){
 					var x = e.accelerationIncludingGravity.x;
-					var y = e.accelerationIncludingGravity.y;
-					var z = e.accelerationIncludingGravity.z;
+	        var y = e.accelerationIncludingGravity.y;
+	        var z = e.accelerationIncludingGravity.z;
 
-					var result1 = document.getElementById("result1");
-					result1.innerHTML =
+	        var result1 = document.getElementById("result1");
+	        result1.innerHTML =
 						"X："+ Math.round(x * 10) / 10 +"<br>" +
-						"Y："+ Math.round(y * 10) / 10 +"<br>" +
-						"Z："+ Math.round(z * 10) / 10;
+	          "Y："+ Math.round(y * 10) / 10 +"<br>" +
+	          "Z："+ Math.round(z * 10) / 10;
 				}
-				function DeviceOrientation(e){
+				function Devicerientation(e){
 					result2.innerHTML =
 					  "alpha："+ Math.round(e.alpha * 10) / 10 +"<br>" +
           	"beta："+ Math.round(e.beta * 10) / 10 +"<br>" +
