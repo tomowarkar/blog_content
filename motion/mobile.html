@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8"/>
     <meta name="viewport" content="initial-scale=1.0"/>
-    <title>モーション1206</title>
+    <title>モーション0008</title>
 		<style>
     .box {
       width: 100px;
@@ -13,24 +13,27 @@
     }
   </style>
     <script>
-	    		'use strict';
+      'use strict';
+      var vect = {x:0, y:0, z:0};
 
       window.addEventListener("devicemotion", function(e){
 				Devicemotion(e)
 			}, true);
 
-				function Devicemotion(e){
-					var x = e.accelerationIncludingGravity.x;
-	        var y = e.accelerationIncludingGravity.y;
-	        var z = e.accelerationIncludingGravity.z;
+      function Devicemotion(e){
+        vect.x = e.accelerationIncludingGravity.x;
+        vect.y = e.accelerationIncludingGravity.y;
+        vect.z = e.accelerationIncludingGravity.z;
+        Reloadresult1()
+      }
+      function Reloadresult1(){
+        var result1 = document.getElementById("result1");
+        result1.innerHTML =
+          "X："+ Math.round(vect.x * 10) / 10 +"<br>" +
+          "Y："+ Math.round(vect.y * 10) / 10 +"<br>" +
+          "Z："+ Math.round(vect.z * 10) / 10;
+      }
 
-	        var result1 = document.getElementById("result1");
-	        result1.innerHTML =
-						"X："+ Math.round(x * 10) / 10 +"<br>" +
-	          "Y："+ Math.round(y * 10) / 10 +"<br>" +
-	          "Z："+ Math.round(z * 10) / 10;
-				}
-				
     </script>
   </head>
   <body>
