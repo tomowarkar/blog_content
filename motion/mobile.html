@@ -13,32 +13,24 @@
     }
   </style>
     <script>
-      var vect = {x:0, y:0, z:0};
-      var vectlogs = [];
-      var count = 0;
+	    		'use strict';
 
       window.addEventListener("devicemotion", function(e){
-				Devicemotion(e);
-      }, true);
+				Devicemotion(e)
+			}, true);
 
+				function Devicemotion(e){
+					var x = e.accelerationIncludingGravity.x;
+	        var y = e.accelerationIncludingGravity.y;
+	        var z = e.accelerationIncludingGravity.z;
 
-      function Resetresult1() {
-        var result1 = document.getElementById("result1");
-        result1.innerHTML =
-          "X："+ Math.round(vect.x * 10) / 10 +"<br>" +
-          "Y："+ Math.round(vect.y * 10) / 10 +"<br>" +
-          "Z："+ Math.round(vect.z * 10) / 10 +"<br>" +
-          "<br>" +"<br>" + vect_log;
-      }
-
-			function Devicemotion(e){
-				vect.x = e.accelerationIncludingGravity.x;
-	      vect.y = e.accelerationIncludingGravity.y;
-	      vect.z = e.accelerationIncludingGravity.z;
-        vectlogs.push(vect);
-        Resetresult1();
-			}
-
+	        var result1 = document.getElementById("result1");
+	        result1.innerHTML =
+						"X："+ Math.round(x * 10) / 10 +"<br>" +
+	          "Y："+ Math.round(y * 10) / 10 +"<br>" +
+	          "Z："+ Math.round(z * 10) / 10;
+				}
+				
     </script>
   </head>
   <body>
