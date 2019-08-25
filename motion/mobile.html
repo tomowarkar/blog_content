@@ -8,19 +8,17 @@
     .box {
       width: 100px;
       height: 100px;
-      background: pink;
+      background: skyblue;
       cursor: pointer;
     }
   </style>
     <script>
       var vect = {x:0, y:0, z:0};
-      var vect_logs = [];
+      var vectlogs = [];
       var count = 0;
 
       window.addEventListener("devicemotion", function(e){
 				Devicemotion(e);
-        vect_logs.push(vect);
-        Resetresult1();
       }, true);
 
 
@@ -37,6 +35,8 @@
 				vect.x = e.accelerationIncludingGravity.x;
 	      vect.y = e.accelerationIncludingGravity.y;
 	      vect.z = e.accelerationIncludingGravity.z;
+        vectlogs.push(vect);
+        Resetresult1();
 			}
 
     </script>
