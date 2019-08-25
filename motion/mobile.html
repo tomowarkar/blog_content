@@ -8,7 +8,7 @@
     .box {
       width: 100px;
       height: 100px;
-      background: pink;
+      background: white;
       cursor: pointer;
     }
   </style>
@@ -26,27 +26,27 @@
         vect.y = e.accelerationIncludingGravity.y;
         vect.z = e.accelerationIncludingGravity.z;
 
-        Judgement();
+        dx, dz = Judgement();
         vectlogs.push(vect);
 
-        Reloadresult1();
+        Reloadresult1(dx, dz);
       }
-      function Reloadresult1(){
+      function Reloadresult1(dx, dz){
         var result1 = document.getElementById("result1");
         result1.innerHTML =
           "X："+ Math.round(vect.x * 10) / 10 +"<br>" +
           "Y："+ Math.round(vect.y * 10) / 10 +"<br>" +
           "Z："+ Math.round(vect.z * 10) / 10 +"<br>" +
-          vectlogs.length + "<br>";
+          vectlogs.length +"<br>" +
+	      dx +"<br>" + dz;
       }
       function Judgement(){
-        if (vectlogs.length > 1000) {ivectlogs.splice(0, vectlogs.length-1000)}
+        //if (vectlogs.length > 1000) {ivectlogs.splice(0, vectlogs.length-1000)}
 
-        var dx = vectlogs[0].x - vectlogs[1000].x;
-        var dz = vectlogs[0].z - vectlogs[1000].z;
+        var dx = vectlogs[vectlogs.length].x - vectlogs[vectlogs.length - 1000].x;
+        var dz = vectlogs[vectlogs.length].z - vectlogs[vectlogs.length - 1000].z;
 
-        var result2 = document.getElementById("result2");
-        result2.innerHTML = dx + "<br>" +dz;
+        return dx, dz
 
 
       }
