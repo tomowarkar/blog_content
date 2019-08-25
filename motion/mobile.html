@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="initial-scale=1.0"/>
+    <title>モーション</title>
+		<style>
+    .box {
+      width: 100px;
+      height: 100px;
+      background: skyblue;
+      cursor: pointer;
+    }
+  </style>
+    <script>
+      var vect = {x:0, y:0, z:0};
+      var vect_logs = []
+      var result1 = document.getElementById("result1");
+
+
+      window.addEventListener("devicemotion", function(e){
+				Devicemotion(e);
+        result1.innerHTML =
+          "X："+ Math.round(vect.x * 10) / 10 +"<br>" +
+          "Y："+ Math.round(vect.y * 10) / 10 +"<br>" +
+          "Z："+ Math.round(vect.z * 10) / 10 -9.8;
+
+        vect_logs.push(vect);
+        document.getElementById("result2").innerHTML = vect_logs;
+			}, true);
+
+
+				function Devicemotion(e){
+					vect.x = e.accelerationIncludingGravity.x;
+	        vect.y = e.accelerationIncludingGravity.y;
+	        vect.z = e.accelerationIncludingGravity.z;
+				}
+
+    </script>
+  </head>
+  <body>
+		<div class="box" id="target"></div>
+    <div id="result1"></div>
+    <div id="result2"></div>
+  </body>
+</html>
