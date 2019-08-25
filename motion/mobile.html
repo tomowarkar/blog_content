@@ -3,19 +3,29 @@
   <head>
     <meta charset="utf-8"/>
     <meta name="viewport" content="initial-scale=1.0"/>
-    <title>モーション0000</title>
-		<style>
-    .box {
-      width: 100px;
-      height: 100px;
-      background: gray;
-      cursor: pointer;
-    }
-  </style>
+    <title>モーション</title>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/1.0.2/Chart.min.js" type="text/javascript"></script>
     <script>
       'use strict';
       var vect = {x:0, y:0, z:0};
 	    var vectxlogs = [];
+
+      var lineChartData = {
+        labels : "x軸",
+        datasets : [
+          {
+            data : vectxlogs
+          }
+        ]
+      }
+
+
+
+      window.onload = function(){
+        var ctx = document.getElementById("graph-area").getContext("2d");
+        window.myLine = new Chart(ctx).Line(lineChartData);
+      }
 
       window.addEventListener("devicemotion", function(e){
 				Devicemotion(e)
@@ -26,11 +36,12 @@
         vect.y = e.accelerationIncludingGravity.y;
         vect.z = e.accelerationIncludingGravity.z;
 
-	vectxlogs.push(vect.x);
+	      vectxlogs.push(vect.x);
         Reloadresult1()
       }
+
       function Reloadresult1(){
-        var dxend = vectxlogs[vectxlogs.length - 1].x;
+        var dxend = vectxlogs[vectxlogs.length - 1];
         var dx = 0;
         if (vectxlogs.length>300){
           dx = parseInt(vectxlogs[vectxlogs.length - 300]) - parseInt(vectxlogs[vectxlogs.length - 1]);
@@ -45,11 +56,11 @@
 		vectxlogs.length + "<br>" + dx;
       }
 
+
     </script>
   </head>
   <body>
-		<div class="box" id="target"></div>
+    <canvas id="graph-area" height="450" width="600"></canvas>
     <div id="result1"></div>
-    <div id="result2"></div>
   </body>
 </html>
