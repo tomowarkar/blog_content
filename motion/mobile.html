@@ -9,7 +9,26 @@
     <script>
       'use strict';
       var vect = {x:0, y:0, z:0};
-	    var vectxlogs = [];
+	    var vectxlogs = [0,1,2,3,1,2];
+
+
+      function Linechart(data){
+        var lineChartData = {
+          labels : Array(data.length).fill(""),
+          datasets : [
+            {
+              fillColor : "#f2dae8",
+              data : data
+            }
+          ]
+        }
+        var countup = function(){
+          var ctx = document.getElementById("graph-area").getContext("2d");
+          window.myLine = new Chart(ctx).Line(lineChartData);
+        }
+        setInterval(countup, 5000);
+      }
+      Linechart(vectxlogs);
 
       window.addEventListener("devicemotion", function(e){
 				Devicemotion(e)
@@ -38,21 +57,6 @@
           "Y："+ Math.round(vect.y * 10) / 10 +"<br>" +
           "Z："+ Math.round(vect.z * 10) / 10 +"<br>" +
 		vectxlogs.length + "<br>" + dx;
-	 var lineChartData = {
-        labels : "x軸",
-        datasets : [
-          {
-            data : vectxlogs
-          }
-        ]
-      }
-
-
-
-      window.onload = function(){
-        var ctx = document.getElementById("graph-area").getContext("2d");
-        window.myLine = new Chart(ctx).Line(lineChartData);
-      }
       }
 
 
@@ -60,6 +64,6 @@
   </head>
   <body>
     <canvas id="graph-area" height="450" width="600"></canvas>
-    <div id="result1"></div>
+    <div id="result1">non</div>
   </body>
 </html>
