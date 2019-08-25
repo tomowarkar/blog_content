@@ -8,14 +8,14 @@
     .box {
       width: 100px;
       height: 100px;
-      background: skyblue;
+      background: gray;
       cursor: pointer;
     }
   </style>
     <script>
       'use strict';
       var vect = {x:0, y:0, z:0};
-	    var vectlogs = [];
+	    var vectxlogs = [];
 
       window.addEventListener("devicemotion", function(e){
 				Devicemotion(e)
@@ -26,15 +26,14 @@
         vect.y = e.accelerationIncludingGravity.y;
         vect.z = e.accelerationIncludingGravity.z;
 
-	vectlogs.push(vect);
+	vectxlogs.push(vect.x);
         Reloadresult1()
       }
       function Reloadresult1(){
-        var dxend = vectlogs[vectlogs.length - 1].x;
+        var dxend = vectxlogs[vectxlogs.length - 1].x;
         var dx = 0;
-        if (vectlogs.length>300){
-          var dxstart = vectlogs[vectlogs.length - 300].x;
-          dx = parseInt(dxstart) - parseInt(dxend);
+        if (vectxlogs.length>300){
+          dx = parseInt(vectxlogs[vectxlogs.length - 300]) - parseInt(vectxlogs[vectxlogs.length - 1]);
         }
 
 
@@ -43,7 +42,7 @@
           "X："+ Math.round(vect.x * 10) / 10 +"<br>" +
           "Y："+ Math.round(vect.y * 10) / 10 +"<br>" +
           "Z："+ Math.round(vect.z * 10) / 10 +"<br>" +
-		vectlogs.length + "<br>" + dx;
+		vectxlogs.length + "<br>" + dx;
       }
 
     </script>
