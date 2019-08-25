@@ -12,23 +12,23 @@
 	    var vectxlogs = [0,1,2,3,1,2];
 
 
-      function Linechart(data){
+
         var lineChartData = {
-          labels : Array(data.length).fill(""),
+          labels : Array(vectxlogs.length).fill(""),
           datasets : [
             {
               fillColor : "#f2dae8",
-              data : data
+              data : vectxlogs
             }
           ]
         }
+	
         var countup = function(){
           var ctx = document.getElementById("graph-area").getContext("2d");
           window.myLine = new Chart(ctx).Line(lineChartData);
         }
         setInterval(countup, 5000);
-      }
-      Linechart(vectxlogs);
+ 
 
       window.addEventListener("devicemotion", function(e){
 				Devicemotion(e)
