@@ -30,7 +30,9 @@
         Reloadresult1()
       }
       function Reloadresult1(){
-        var dx = vectlogs[vectlogs.length - 1] - vectlogs[vectlogs.length - 1000];
+        var dxend = vectlogs[vectlogs.length - 1].x;
+        var dxstart = vectlogs[vectlogs.length - 300].x;
+        var dx = dxstart - dxend;
 
 
         var result1 = document.getElementById("result1");
