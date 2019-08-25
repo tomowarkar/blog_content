@@ -8,7 +8,7 @@
     .box {
       width: 100px;
       height: 100px;
-      background: blue;
+      background: skyblue;
       cursor: pointer;
     }
   </style>
@@ -34,7 +34,7 @@
         var dx = 0;
         if (vectlogs.length>300){
           var dxstart = vectlogs[vectlogs.length - 300].x;
-          dx = dxstart - dxend;
+          dx = parseInt(dxstart) - parseInt(dxend);
         }
 
 
