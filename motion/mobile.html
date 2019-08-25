@@ -3,12 +3,12 @@
   <head>
     <meta charset="utf-8"/>
     <meta name="viewport" content="initial-scale=1.0"/>
-    <title>モーション0</title>
+    <title>モーション0000</title>
 		<style>
     .box {
       width: 100px;
       height: 100px;
-      background: skyblue;
+      background: blue;
       cursor: pointer;
     }
   </style>
@@ -30,9 +30,12 @@
         Reloadresult1()
       }
       function Reloadresult1(){
-        //var dxend = vectlogs[vectlogs.length - 1].x;
-        var dxstart = vectlogs[vectlogs.length - 300].x;
-        //var dx = dxstart - dxend;
+        var dxend = vectlogs[vectlogs.length - 1].x;
+        var dx = 0;
+        if (vectlogs.length>300){
+          var dxstart = vectlogs[vectlogs.length - 300].x;
+          dx = dxstart - dxend;
+        }
 
 
         var result1 = document.getElementById("result1");
@@ -40,7 +43,7 @@
           "X："+ Math.round(vect.x * 10) / 10 +"<br>" +
           "Y："+ Math.round(vect.y * 10) / 10 +"<br>" +
           "Z："+ Math.round(vect.z * 10) / 10 +"<br>" +
-		vectlogs.length + "<br>" + dxstart;
+		vectlogs.length + "<br>" + dx;
       }
 
     </script>
