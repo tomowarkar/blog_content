@@ -14,18 +14,24 @@
   </style>
     <script>
       var vect = {x:0, y:0, z:0};
-      var vect_logs = []
-      window.addEventListener("devicemotion", function(e){
-				Devicemotion(e)
-        vect_logs.push(vect)
+      var vect_logs = [];
+      var count = 0;
 
+      window.addEventListener("devicemotion", function(e){
+				Devicemotion(e);
+        vect_logs.push(vect);
+        Resetresult1();
+      }, true);
+
+
+      function Resetresult1() {
         var result1 = document.getElementById("result1");
         result1.innerHTML =
           "X："+ Math.round(vect.x * 10) / 10 +"<br>" +
           "Y："+ Math.round(vect.y * 10) / 10 +"<br>" +
           "Z："+ Math.round(vect.z * 10) / 10 +"<br>" +
           "<br>" +"<br>" + vect_log;
-			}, true);
+      }
 
 			function Devicemotion(e){
 				vect.x = e.accelerationIncludingGravity.x;
