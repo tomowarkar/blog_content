@@ -11,22 +11,6 @@
       var vect = {x:0, y:0, z:0};
 	    var vectxlogs = [];
 
-      var lineChartData = {
-        labels : "x軸",
-        datasets : [
-          {
-            data : vectxlogs
-          }
-        ]
-      }
-
-
-
-      window.onload = function(){
-        var ctx = document.getElementById("graph-area").getContext("2d");
-        window.myLine = new Chart(ctx).Line(lineChartData);
-      }
-
       window.addEventListener("devicemotion", function(e){
 				Devicemotion(e)
 			}, true);
@@ -54,6 +38,21 @@
           "Y："+ Math.round(vect.y * 10) / 10 +"<br>" +
           "Z："+ Math.round(vect.z * 10) / 10 +"<br>" +
 		vectxlogs.length + "<br>" + dx;
+	 var lineChartData = {
+        labels : "x軸",
+        datasets : [
+          {
+            data : vectxlogs
+          }
+        ]
+      }
+
+
+
+      window.onload = function(){
+        var ctx = document.getElementById("graph-area").getContext("2d");
+        window.myLine = new Chart(ctx).Line(lineChartData);
+      }
       }
 
 
