@@ -18,29 +18,25 @@
         vect.y = e.accelerationIncludingGravity.y;
         vect.z = e.accelerationIncludingGravity.z;
 
-        var nijo = vect.x**2 + vect.y**2 + vect.z**2;
-        if (nijo > 100){
-          navigator.mozVibrate(3000);
-        }
-
-
-
         Reloadresult1()
       }
 
       function Reloadresult1(){
+        var nijo = vect.x**2 + vect.y**2 + vect.z**2;
+        if (nijo > 100){
+          navigator.mozVibrate(3000);
+        }
         var result1 = document.getElementById("result1");
-
         result1.innerHTML =
           "X："+ Math.round(vect.x * 10) / 10 +"<br>" +
           "Y："+ Math.round(vect.y * 10) / 10 +"<br>" +
-          "Z："+ Math.round(vect.z * 10) / 10;
+          "Z："+ Math.round(vect.z * 10) / 10 +"<br>" + nijo;
       }
 
 
     </script>
   </head>
   <body>
-    <div id="result1">nonnon</div>
+    <div id="result1">non</div>
   </body>
 </html>
