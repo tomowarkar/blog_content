@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8"/>
     <meta name="viewport" content="initial-scale=1.0"/>
-    <title>モーション</title>
+    <title>揺れ</title>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/1.0.2/Chart.min.js" type="text/javascript"></script>
     <script>
@@ -24,7 +24,7 @@
       function Reloadresult1(){
         var nijo = vect.x**2 + vect.y**2 + vect.z**2;
         if (nijo > 100){
-          navigator.mozVibrate(3000);
+          navigator.vibrate(3000);
         }
         var result1 = document.getElementById("result1");
         result1.innerHTML =
@@ -34,8 +34,7 @@
       }
       window.addEventListener("load", function(){
         document.getElementById("vibrate").addEventListener("click", function(){
-          navigator.mozVibrate(3000);
-          //navigator.vibrate(3000);
+          navigator.vibrate(3000);
         }, true);
       }, true);
     </script>
