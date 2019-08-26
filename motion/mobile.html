@@ -17,7 +17,14 @@
         vect.x = e.accelerationIncludingGravity.x;
         vect.y = e.accelerationIncludingGravity.y;
         vect.z = e.accelerationIncludingGravity.z;
-        Judge()
+
+        var nijo = vect.x**2 + vect.y**2 + vect.z**2;
+        if (nijo > 115){
+          navigator.mozVibrate(3000);
+        }
+
+
+
         Reloadresult1()
       }
 
@@ -30,27 +37,10 @@
           "Z："+ Math.round(vect.z * 10) / 10;
       }
 
-      function Judge(){
-        var nijo = vect.x**2 + vect.y**2 + vect.z**2;
-
-        if(nijoz>110){
-          Vibrate()
-        }
-      }
-
-      function Vibrate(){
-        window.addEventListener("load", function(){
-          document.getElementById("vibrate").addEventListener("click", function(){
-            navigator.mozVibrate(3000);
-            //navigator.vibrate(3000);
-          }, true);
-        }, true);
-      }
-
 
     </script>
   </head>
   <body>
-    <div id="result1">nona</div>
+    <div id="result1">nonnon</div>
   </body>
 </html>
