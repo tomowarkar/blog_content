@@ -17,17 +17,34 @@
         vect.x = e.accelerationIncludingGravity.x;
         vect.y = e.accelerationIncludingGravity.y;
         vect.z = e.accelerationIncludingGravity.z;
+        Judge()
         Reloadresult1()
       }
 
       function Reloadresult1(){
         var result1 = document.getElementById("result1");
-        var nijo = vect.x**2 + vect.y**2 + vect.z**2;
+
         result1.innerHTML =
           "X："+ Math.round(vect.x * 10) / 10 +"<br>" +
           "Y："+ Math.round(vect.y * 10) / 10 +"<br>" +
-          "Z："+ Math.round(vect.z * 10) / 10 +"<br>" + nijo;
+          "Z："+ Math.round(vect.z * 10) / 10;
+      }
 
+      function Judge(){
+        var nijo = vect.x**2 + vect.y**2 + vect.z**2;
+
+        if(nijoz>110){
+          Vibrate()
+        }
+      }
+
+      function Vibrate(){
+        window.addEventListener("load", function(){
+          document.getElementById("vibrate").addEventListener("click", function(){
+            navigator.mozVibrate(3000);
+            //navigator.vibrate(3000);
+          }, true);
+        }, true);
       }
 
 
