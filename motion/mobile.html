@@ -23,8 +23,8 @@
 
       function Reloadresult1(){
         var nijo = vect.x**2 + vect.y**2 + vect.z**2;
-        if (nijo > 100){
-          navigator.vibrate(3000);
+        if (nijo > 115){
+          navigator.vibrate(30);
         }
         var result1 = document.getElementById("result1");
         result1.innerHTML =
@@ -32,17 +32,9 @@
           "Y："+ Math.round(vect.y * 10) / 10 +"<br>" +
           "Z："+ Math.round(vect.z * 10) / 10 +"<br>" + nijo;
       }
-      window.addEventListener("load", function(){
-        document.getElementById("vibrate").addEventListener("click", function(){
-          navigator.vibrate(3000);
-        }, true);
-      }, true);
     </script>
   </head>
   <body>
     <div id="result1">non</div>
-    <form>
-      <input type="button" id="vibrate" value="バイブレート">
-    </form>
   </body>
 </html>
