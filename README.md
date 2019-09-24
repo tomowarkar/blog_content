@@ -16,3 +16,5 @@
 [音声検索](/speech/voice_retrieval.html)
 
 [合成音声](/speech/voice_synthesis.html)
+
+[小説家](/novelists.html)
