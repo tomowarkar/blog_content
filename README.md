@@ -1,13 +1,5 @@
 # blog_content
-┣index.html<br>
-┣css/<br>
-┣js/<br>
-┃┣html5/<br>
-┃┃┗WebUSB<br>
-┃┣<br>
-┃┗<br>
-┣assets/<br>
-┃・┣img/<br>
-┃・┗<br>
-┃・・┗<br>
 
+- [パステルパレット](https://tomowarkar.github.io/blog_content/animation/make_circle/index.html)<br>
+- [なんか綺麗](https://tomowarkar.github.io/blog_content/animation/make_circle/pastel_circles.html)<br>
+- [お絵かき](https://tomowarkar.github.io/blog_content/animation/make_circle/mobile.html)<br>
