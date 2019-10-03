@@ -1,7 +1,7 @@
 # [blog_content](https://tomowarkar.github.io/blog_content/)
 git@github.com:tomowarkar/blog_content.git
 ## canvas
-  [パステルパレット](https://tomowarkar.github.io/blog_content/animation/make_circle/index.html)
+[パステルパレット](https://tomowarkar.github.io/blog_content/animation/make_circle/index.html)
   
 [なんか綺麗](https://tomowarkar.github.io/blog_content/animation/make_circle/pastel_circles.html)
 
