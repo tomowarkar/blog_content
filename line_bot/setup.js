@@ -1,7 +1,7 @@
-var channel_token = 
+var channel_token = ""
 var url = "https://api.line.me/v2/bot/message/reply"
 var pushUrl = "https://api.line.me/v2/bot/message/push"
-var homepage = 
+var homepage = ""
 
 function doPost(e) {
   var json = e.postData.contents
