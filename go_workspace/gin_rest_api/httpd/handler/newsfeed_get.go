@@ -6,6 +6,7 @@ import (
 	"net/http"
 )
 
+// NewsfeedGet return JSON
 func NewsfeedGet(feed newsfeed.Getter) gin.HandlerFunc {
 	return func(c *gin.Context) {
 		results := feed.GetAll()
