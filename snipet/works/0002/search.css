@@ -1,0 +1,18 @@
+/* 
+<form action="#"　method="get">
+  <input type="text" placeholder="サイト内を検索" name="s" id="s" value="">
+</form> 
+*/
+
+form {
+  margin:30px
+}
+
+input[type="text"] {
+  padding: 11px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 18px;
+  width: 100%;
+  box-sizing: border-box;
+}
