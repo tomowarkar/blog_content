@@ -1,0 +1,9 @@
+# $ crontab -l : show list
+# $ crontab -e : edit crontab
+
+PYTHONIOENCODING = 'utf-8'
+LANG=ja_JP.UTF-8
+MAILTO=""
+
+# 毎日20時に実行
+0 20 * * * cd /Users; bash -l -c 'python3 ~/hello.py'

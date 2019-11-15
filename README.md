@@ -1,6 +1,6 @@
 # [blog_content](https://tomowarkar.github.io/blog_content/)
 
-# [プレフィックスルール](https://github.com/angular/angular.js/blob/master/DEVELOPERS.md#type)
+### [プレフィックスルール](https://github.com/angular/angular.js/blob/master/DEVELOPERS.md#type)
 ```
 Type
 Must be one of the following:
@@ -32,11 +32,6 @@ chore: Changes to the build process or auxiliary tools and libraries such as doc
 [音声検索](https://tomowarkar.github.io/blog_content/speech/voice_retrieval.html)
 
 [合成音声](https://tomowarkar.github.io/blog_content/speech/voice_synthesis.html)
-
-## GoLang
-[お勉強1 マイクロアプリ](https://github.com/tomowarkar/blog_content/tree/master/go_workspace/moon)
-
-[お勉強2 REST api](https://github.com/tomowarkar/blog_content/tree/master/go_workspace/gin_rest_api)
 
 ## other
 
