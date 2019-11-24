@@ -1,7 +1,7 @@
 # [blog_content](https://tomowarkar.github.io/blog_content/)
 
 ### [プレフィックスルール](https://github.com/angular/angular.js/blob/master/DEVELOPERS.md#type)
-```
+```yaml
 Type
 Must be one of the following:
 
