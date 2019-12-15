@@ -9,30 +9,33 @@
   <script>
     let vect = { x: 0, y: 0, z: 0 };
     window.addEventListener("devicemotion", e => {
-      Devicemotion(e)
-//       setInterval("Devicemotion(e)", 1000);
+      setInterval(e => {
+        x = vect.x - e.accelerationIncludingGravity.x;
+        y = vect.y - e.accelerationIncludingGravity.y;
+        z = vect.z - e.accelerationIncludingGravity.z;
+        Showresult(x, y, z)
+        setVect()
+      }, 1000);
     }, true);
 
-    const Devicemotion = e => {
+    const setVect = () => {
       vect.x = e.accelerationIncludingGravity.x;
       vect.y = e.accelerationIncludingGravity.y;
       vect.z = e.accelerationIncludingGravity.z;
-
-      Showresult()
     }
 
-    const Showresult = () => {
+    const Showresult = (x, y, z) => {
       var result = document.getElementById("result");
       result.innerHTML =
-        "X：" + Math.round(vect.x * 10) / 10 + "<br>" +
-        "Y：" + Math.round(vect.y * 10) / 10 + "<br>" +
-        "Z：" + Math.round(vect.z * 10) / 10
+        "X：" + Math.round(x * 10) / 10 + "<br>" +
+        "Y：" + Math.round(y * 10) / 10 + "<br>" +
+        "Z：" + Math.round(z * 10) / 10
     }
   </script>
 </head>
 
 <body>
-  <div id="result">no</div>
+  <div id="result">none</div>
 </body>
 
 </html>
