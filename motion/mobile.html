@@ -8,21 +8,20 @@
 
   <script>
     window.addEventListener("devicemotion", e => {
-//       setInterval(() => {
-        x = e.accelerationIncludingGravity.x;
-        y = e.accelerationIncludingGravity.y;
-        z = e.accelerationIncludingGravity.z;
+      x = e.accelerationIncludingGravity.x;
+      y = e.accelerationIncludingGravity.y;
+      z = e.accelerationIncludingGravity.z;
+      
+      if (z > 9) {
+        navigator.vibrate(30);
+      } 
 
-        let result = document.getElementById("result");
-        result.innerHTML =
-          "X：" + Math.round(x * 10) / 10 + "<br>" +
-          "Y：" + Math.round(y * 10) / 10 + "<br>" +
-          "Z：" + Math.round(z * 10) / 10 + "<br>"
-//       }, 3000);
+      let result = document.getElementById("result");
+      result.innerHTML =
+        "X：" + Math.round(x * 10) / 10 + "<br>" +
+        "Y：" + Math.round(y * 10) / 10 + "<br>" +
+        "Z：" + Math.round(z * 10) / 10 + "<br>"
     }, true);
-    setInterval(()=>{
-      navigator.vibrate(30);
-    }, 5000);
   </script>
 </head>
 
