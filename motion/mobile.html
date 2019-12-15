@@ -20,12 +20,14 @@
           "Z：" + Math.round(z * 10) / 10 + "<br>"
 //       }, 3000);
     }, true);
-
+    setInterval(()=>{
+      navigator.vibrate(30);
+    }, 5000);
   </script>
 </head>
 
 <body>
-  <div id="result">vibrate</div>
+  <div id="result">vibration</div>
 </body>
 
 </html>
