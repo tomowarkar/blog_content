@@ -9,9 +9,9 @@
   <script>
     window.addEventListener("devicemotion", e => {
       setInterval(() => {
-        let x = e.accelerationIncludingGravity.x;
-        let y = e.accelerationIncludingGravity.y;
-        let z = e.accelerationIncludingGravity.z;
+        x = e.accelerationIncludingGravity.x;
+        y = e.accelerationIncludingGravity.y;
+        z = e.accelerationIncludingGravity.z;
 
         let result = document.getElementById("result");
         result.innerHTML =
