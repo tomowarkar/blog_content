@@ -11,16 +11,32 @@
     window.addEventListener("devicemotion", e => {
       setInterval(() => {
         x = vect.x - e.accelerationIncludingGravity.x;
-        var result = document.getElementById("result");
-        result.innerHTML = "X：" + Math.round(x * 10) / 10
+        y = vect.y - e.accelerationIncludingGravity.y;
+        z = vect.z - e.accelerationIncludingGravity.z;
+        scalar = (x ** 2 + y ** 2 + z ** 2) ** (1 / 2)
+        Showresult(x, y, z, scalar)
+        setVect()
       }, 1000);
     }, true);
+    
+    const setVect = () => {
+      vect.x = e.accelerationIncludingGravity.x;
+      vect.y = e.accelerationIncludingGravity.y;
+      vect.z = e.accelerationIncludingGravity.z;
+    }
 
+    const Showresult = (x, y, z, scalar) => {
+      let result = document.getElementById("result");
+      result.innerHTML =
+        "X：" + Math.round(x * 10) / 10 + "<br>" +
+        "Y：" + Math.round(y * 10) / 10 + "<br>" +
+        "Z：" + Math.round(z * 10) / 10 + "<br>" + scalar;
+    }
   </script>
 </head>
 
 <body>
-  <div id="result">no</div>
+  <div id="result">vibrate</div>
 </body>
 
 </html>
