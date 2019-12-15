@@ -9,7 +9,8 @@
   <script>
     let vect = { x: 0, y: 0, z: 0 };
     window.addEventListener("devicemotion", e => {
-      setInterval("Devicemotion(e)", 1000);
+      Devicemotion(e)
+//       setInterval("Devicemotion(e)", 1000);
     }, true);
 
     const Devicemotion = e => {
@@ -31,7 +32,7 @@
 </head>
 
 <body>
-  <div id="result">none</div>
+  <div id="result">no</div>
 </body>
 
 </html>
