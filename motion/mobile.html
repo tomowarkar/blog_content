@@ -8,7 +8,7 @@
 
   <script>
     window.addEventListener("devicemotion", e => {
-      setInterval(() => {
+//       setInterval(() => {
         x = e.accelerationIncludingGravity.x;
         y = e.accelerationIncludingGravity.y;
         z = e.accelerationIncludingGravity.z;
@@ -18,7 +18,7 @@
           "X：" + Math.round(x * 10) / 10 + "<br>" +
           "Y：" + Math.round(y * 10) / 10 + "<br>" +
           "Z：" + Math.round(z * 10) / 10 + "<br>"
-      }, 3000);
+//       }, 3000);
     }, true);
 
   </script>
