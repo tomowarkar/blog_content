@@ -9,7 +9,7 @@
   <script>
     let vect = { x: 0, y: 0, z: 0 };
     window.addEventListener("devicemotion", e => {
-      setInterval(e => {
+      setInterval(() => {
         x = vect.x - e.accelerationIncludingGravity.x;
         var result = document.getElementById("result");
         result.innerHTML = "X：" + Math.round(x * 10) / 10
