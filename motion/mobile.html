@@ -1,40 +1,32 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta charset="utf-8"/>
-    <meta name="viewport" content="initial-scale=1.0"/>
-    <title>揺れ</title>
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/1.0.2/Chart.min.js" type="text/javascript"></script>
-    <script>
-      'use strict';
-      var vect = {x:0, y:0, z:0};
-      window.addEventListener("devicemotion", function(e){
-				Devicemotion(e)
-			}, true);
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="initial-scale=1.0" />
+  <title></title>
 
-      function Devicemotion(e){
-        vect.x = e.accelerationIncludingGravity.x;
-        vect.y = e.accelerationIncludingGravity.y;
-        vect.z = e.accelerationIncludingGravity.z;
+  <script>
+    window.addEventListener("devicemotion", e => {
+      x = e.accelerationIncludingGravity.x;
+      y = e.accelerationIncludingGravity.y;
+      z = e.accelerationIncludingGravity.z;
+      
+      if (z > 9) {
+        navigator.vibrate(30);
+      } 
 
-        Reloadresult1()
-      }
+      let result = document.getElementById("result");
+      result.innerHTML =
+        "X：" + Math.round(x * 10) / 10 + "<br>" +
+        "Y：" + Math.round(y * 10) / 10 + "<br>" +
+        "Z：" + Math.round(z * 10) / 10 + "<br>"
+    }, true);
+  </script>
+</head>
 
-      function Reloadresult1(){
-        var nijo = vect.x**2 + vect.y**2 + vect.z**2;
-        if (nijo > 108){
-          navigator.vibrate(30);
-        }
-        var result1 = document.getElementById("result1");
-        result1.innerHTML =
-          "X："+ Math.round(vect.x * 10) / 10 +"<br>" +
-          "Y："+ Math.round(vect.y * 10) / 10 +"<br>" +
-          "Z："+ Math.round(vect.z * 10) / 10 +"<br>" + nijo;
-      }
-    </script>
-  </head>
-  <body>
-    <div id="result1">non</div>
-  </body>
+<body>
+  <div id="result">vibration</div>
+</body>
+
 </html>
