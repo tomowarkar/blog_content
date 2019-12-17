@@ -36,3 +36,4 @@ chore: Changes to the build process or auxiliary tools and libraries such as doc
 ## other
 
 [小説家](https://tomowarkar.github.io/blog_content/novelists.html)
+[piano](https://tomowarkar.github.io/blog_content/piano/index.html)
