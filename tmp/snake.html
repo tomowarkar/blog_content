@@ -1,0 +1,92 @@
+<canvas id="game" width="400" height="400"></canvas>
+
+<script>
+  canvas = document.querySelector("#game")
+  ctx = canvas.getContext("2d")
+
+  window.onload = () => {
+    document.addEventListener("keydown", keyEvent)
+    setInterval(game, 1000 / 15)
+  }
+  let play = false
+  dot = 20
+  let snake = { x: 0, y: 0, vx: 0, vy: 0, trail: [] }
+  let apple = { x: 1, y: 1 }
+  tail = 5
+  score = highscore = 0
+
+  function game() {
+    if (play) {
+      snake.x += snake.vx
+      snake.y += snake.vy
+      if (snake.x < 0) { snake.x = dot - 1; score = 0; tail = 5 }
+      if (snake.x > dot - 1) { snake.x = 0; score = 0; tail = 5 }
+      if (snake.y < 0) { snake.y = dot - 1; score = 0; tail = 5 }
+      if (snake.y > dot - 1) { snake.y = 0; score = 0; tail = 5 }
+      // 背景描画
+      ctx.fillStyle = "black"
+      ctx.fillRect(0, 0, canvas.width, canvas.height)
+      // 蛇描画
+      ctx.fillStyle = "lime"
+      for (let i = 0; i < snake.trail.length; i++) {
+        ctx.fillRect(snake.trail[i].x * dot, snake.trail[i].y * dot, dot - 2, dot - 2)
+        if (snake.trail[i].x == snake.x && snake.trail[i].y == snake.y) {
+          tail = 5
+          score = 0
+        }
+      }
+      snake.trail.push({ x: snake.x, y: snake.y })
+      while (snake.trail.length > tail) {
+        snake.trail.shift()
+      }
+
+      if (apple.x == snake.x && apple.y == snake.y) {
+        tail++
+        score++
+        if (score > highscore) {
+          highscore = score
+        }
+        apple.x = Math.floor(Math.random() * dot)
+        apple.y = Math.floor(Math.random() * dot)
+      }
+      // りんご描画
+      ctx.fillStyle = "red"
+      ctx.fillRect(apple.x * dot, apple.y * dot, dot - 2, dot - 2)
+      // スコア描画
+      ctx.font = "20px serif";
+      ctx.fillStyle = "white"
+      ctx.fillText("high score : " + highscore, 10, canvas.height - 10);
+      ctx.fillText("score        : " + score, 10, canvas.height - 30);
+    } else {
+      ctx.fillStyle = "white"
+      ctx.fillRect(0, 0, canvas.width, canvas.height)
+      ctx.fillStyle = "black"
+      ctx.font = "30px serif";
+      ctx.fillText("Welcome to snake game.", 10, 50);
+      ctx.fillText("Press the space key!!", 10, 90);
+    }
+  }
+  function keyEvent(e) {
+    switch (e.keyCode) {
+      case 32:
+        play = !play
+        break
+      case 37:
+        snake.vx = -1
+        snake.vy = 0
+        break
+      case 38:
+        snake.vx = 0
+        snake.vy = -1
+        break
+      case 39:
+        snake.vx = 1
+        snake.vy = 0
+        break
+      case 40:
+        snake.vx = 0
+        snake.vy = 1
+        break
+    }
+  }
+</script>
